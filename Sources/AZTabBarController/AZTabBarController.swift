@@ -342,7 +342,7 @@ open class AZTabBarController: UIViewController {
         buttonsContainer.addSubview(buttonsStackView)
         
         //disable autoresizing mask
-        controllersContainer.translatesAutoresizingMaskIntoConstraints = false
+        //controllersContainer.translatesAutoresizingMaskIntoConstraints = false
         buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -361,9 +361,9 @@ open class AZTabBarController: UIViewController {
         separatorLineHeightConstraint = separatorLine.heightAnchor.constraint(equalToConstant: 1)
         separatorLineHeightConstraint.isActive = true
         
-        controllersContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        /*controllersContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         controllersContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        controllersContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        controllersContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true*/
     }
     
     /// Public initializer that creates a controller using tabIcons and (optional) highlightedIcons.
