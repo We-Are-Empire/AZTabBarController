@@ -286,6 +286,8 @@ open class AZTabBarController: UIViewController {
     
     internal var selectionIndicatorHeightConstraint:NSLayoutConstraint!
     
+    public var leftContainerConstraint: NSLayoutConstraint!
+    
     /*
      * MARK: - Private Properties
      */
@@ -342,7 +344,7 @@ open class AZTabBarController: UIViewController {
         buttonsContainer.addSubview(buttonsStackView)
         
         //disable autoresizing mask
-        //controllersContainer.translatesAutoresizingMaskIntoConstraints = false
+        controllersContainer.translatesAutoresizingMaskIntoConstraints = false
         buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -361,9 +363,13 @@ open class AZTabBarController: UIViewController {
         separatorLineHeightConstraint = separatorLine.heightAnchor.constraint(equalToConstant: 1)
         separatorLineHeightConstraint.isActive = true
         
-        /*controllersContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        controllersContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        controllersContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true*/
+        controllersContainer.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        //controllersContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        
+        leftContainerConstraint = controllersContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        leftContainerConstraint.isActive = true
+        
+        controllersContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     /// Public initializer that creates a controller using tabIcons and (optional) highlightedIcons.
@@ -809,7 +815,7 @@ open class AZTabBarController: UIViewController {
     
     @objc func tabButtonAction(button:UIButton){
         if let index = self.buttons.firstIndex(of: button){
-        	delegate?.tabBar(self, didSelectTabAtIndex: index)
+            delegate?.tabBar(self, didSelectTabAtIndex: index)
         
             if let id = delegate?.tabBar(self, systemSoundIdForButtonAtIndex: index), !isAnimating{
                 AudioServicesPlaySystemSound(id)
